@@ -26,24 +26,24 @@
     font-family:var(--font-body);
     color:var(--ink);
     background:radial-gradient(120% 60% at 50% 0%, #FFE3CC 0%, var(--cream) 55%, #FFFDFB 100%);
-    overflow:hidden;
+    overflow-x:hidden;
   }
   .page{
     position:relative;
-    height:100dvh;
+    min-height:100dvh;
     max-width:480px;
     margin:0 auto;
     display:flex;
     flex-direction:column;
-    gap:clamp(6px,1.4vh,14px);
-    padding:calc(env(safe-area-inset-top,0px) + 10px) 16px calc(env(safe-area-inset-bottom,0px) + 12px);
+    gap:clamp(6px,1.2vh,10px);
+    padding:calc(env(safe-area-inset-top,0px) + 28px) 16px calc(env(safe-area-inset-bottom,0px) + 12px);
   }
 
   /* Top bar */
-  .topbar{display:flex;align-items:center;justify-content:center;position:relative;min-height:40px;flex:none}
+  .topbar{display:flex;align-items:center;justify-content:center;position:relative;min-height:38px;flex:none}
   .back{
     position:absolute;left:0;top:50%;transform:translateY(-50%);
-    width:38px;height:38px;border-radius:50%;
+    width:36px;height:36px;border-radius:50%;
     border:1px solid rgba(241,90,36,.25);background:#fff;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 4px 12px rgba(241,90,36,.12);cursor:pointer;
@@ -51,93 +51,84 @@
   .back:active{transform:translateY(-50%) scale(.95)}
   .back svg{width:20px;height:20px;stroke:var(--brand-deep)}
   .brand{display:flex;align-items:center;gap:8px}
-  .brand img{width:34px;height:34px;display:block}
-  .brand span{font-family:var(--font-logo);font-weight:800;font-size:24px;letter-spacing:-.2px;color:var(--brand)}
+  .brand img{width:30px;height:30px;display:block}
+  .brand span{font-family:var(--font-logo);font-weight:800;font-size:22px;letter-spacing:-.2px;color:var(--brand)}
 
   /* Badge + title */
   .badge{
     align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
     background:linear-gradient(90deg,var(--brand-deep),var(--brand-light));
-    color:#fff;font-weight:600;font-size:12px;letter-spacing:.8px;text-transform:uppercase;
-    padding:6px 14px;border-radius:999px;flex:none;
+    color:#fff;font-weight:600;font-size:11px;letter-spacing:.8px;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;flex:none;
   }
   .badge svg{width:14px;height:14px;fill:#fff}
   .title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:none}
   h1{
     font-family:var(--font-head);font-weight:800;line-height:1;
-    font-size:clamp(28px,5.2vh,36px);
+    font-size:30px;
     background:linear-gradient(90deg,var(--brand-light),var(--brand-deep));
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .flow{display:flex;align-items:center;gap:6px;flex:none}
   .flow .chip{
-    width:32px;height:32px;border-radius:10px;border:2px solid var(--brand-light);background:#fff;
+    width:30px;height:30px;border-radius:9px;border:2px solid var(--brand-light);background:#fff;
     display:flex;align-items:center;justify-content:center;
   }
-  .flow .chip svg{width:18px;height:18px;stroke:var(--brand-deep)}
-  .flow .arrow{width:18px;height:18px;stroke:var(--brand-deep)}
+  .flow .chip svg{width:16px;height:16px;stroke:var(--brand-deep)}
+  .flow .arrow{width:16px;height:16px;stroke:var(--brand-deep)}
   .flow .dot{
-    width:36px;height:36px;border-radius:50%;
+    width:34px;height:34px;border-radius:50%;
     background:linear-gradient(135deg,var(--brand-light),var(--brand-deep));
     display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(241,90,36,.35);
   }
-  .flow .dot svg{width:20px;height:20px;stroke:#fff}
+  .flow .dot svg{width:18px;height:18px;stroke:#fff}
 
-  .lead{font-size:clamp(14px,2.2vh,16px);line-height:1.45;color:var(--muted);flex:none}
+  .lead{font-size:13px;line-height:1.4;color:var(--muted);flex:none}
   .lead b{color:var(--brand-deep);font-weight:600}
 
   /* Cards */
-  .cards{display:flex;flex-direction:column;gap:clamp(6px,1.3vh,12px);flex:1 1 auto;min-height:0}
+  .cards{display:flex;flex-direction:column;gap:8px;flex:1 0 auto}
   .card{
-    flex:1 1 0;min-height:0;
+    flex:1 1 auto;
     display:flex;align-items:center;gap:12px;
-    background:#fff;border:1px solid #FFE0CA;border-radius:18px;
-    padding:8px 14px;box-shadow:0 8px 20px rgba(241,90,36,.08);
+    background:#fff;border:1px solid #FFE0CA;border-radius:16px;
+    padding:8px 12px;box-shadow:0 6px 16px rgba(241,90,36,.08);
   }
   .ico{
-    position:relative;flex:none;width:48px;height:48px;border-radius:50%;
+    position:relative;flex:none;width:40px;height:40px;border-radius:50%;
     background:var(--peach);display:flex;align-items:center;justify-content:center;
   }
-  .ico svg{width:24px;height:24px;stroke:var(--brand-deep)}
+  .ico svg{width:20px;height:20px;stroke:var(--brand-deep)}
   .num{
-    position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;
-    background:var(--brand);color:#fff;font-size:11px;font-weight:700;
+    position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;
+    background:var(--brand);color:#fff;font-size:10px;font-weight:700;
     display:flex;align-items:center;justify-content:center;border:2px solid #fff;
   }
-  .txt h2{font-family:var(--font-head);font-weight:700;font-size:clamp(16px,2.6vh,19px);line-height:1.15;color:var(--ink)}
-  .txt p{font-size:clamp(12px,1.9vh,14px);line-height:1.38;color:var(--muted);margin-top:2px}
+  .txt h2{font-family:var(--font-head);font-weight:700;font-size:15px;line-height:1.15;color:var(--ink)}
+  .txt p{font-size:12px;line-height:1.35;color:var(--muted);margin-top:2px}
   .txt p b{color:var(--brand-deep);font-weight:600}
 
   /* Nudge + CTA */
   .nudge{
     flex:none;display:flex;align-items:center;gap:10px;
     background:linear-gradient(90deg,var(--brand-deep),var(--brand-light));
-    color:#fff;border-radius:16px;padding:10px 14px;
-    font-family:var(--font-head);font-weight:600;font-size:clamp(14px,2.3vh,17px);line-height:1.25;
+    color:#fff;border-radius:14px;padding:9px 12px;
+    font-family:var(--font-head);font-weight:600;font-size:14px;line-height:1.25;
   }
-  .nudge svg{width:26px;height:26px;stroke:#fff;flex:none}
+  .nudge svg{width:22px;height:22px;stroke:#fff;flex:none}
   .home{
     flex:none;width:100%;border:2px solid var(--brand);background:#fff;color:var(--brand-deep);
-    font-family:var(--font-head);font-weight:700;font-size:17px;
-    padding:10px 16px;border-radius:14px;cursor:pointer;
+    font-family:var(--font-head);font-weight:700;font-size:15px;
+    padding:9px 16px;border-radius:12px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;gap:8px;
   }
-  .home svg{width:20px;height:20px;stroke:var(--brand-deep)}
+  .home svg{width:18px;height:18px;stroke:var(--brand-deep)}
   .home:active{background:var(--peach)}
-  .foot{flex:none;text-align:center;font-size:11px;color:#9A8274}
 
   /* Sparkles */
   .sp{position:absolute;color:var(--brand-light);opacity:.7;font-size:14px;pointer-events:none}
   .sp.a{top:14%;right:8%}.sp.b{top:46%;left:2%;font-size:11px}
 
-  @media (max-height:640px){
-    .lead{font-size:13px;line-height:1.35}
-    .card{padding:6px 12px}
-    .ico{width:42px;height:42px}
-    .ico svg{width:20px;height:20px}
-    .nudge{padding:8px 12px}
-    .home{padding:8px 14px}
-  }
 </style>
 </head>
 <body>
@@ -219,7 +210,6 @@
     Go to Home
   </button>
 
-  <div class="foot">AstroLokal · Astrologer feature update</div>
 </main>
 
 <script>
