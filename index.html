@@ -20,19 +20,22 @@
     --font-head:'Baloo 2','Inter',system-ui,sans-serif;
     --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 
-    /* Size scale — compact by default, steps up on taller screens (see media queries) */
+    /* Size scale — everything grows smoothly with the screen height (--H), within safe min/max limits */
+    --H:100vh;
     --top-space:28px;      /* extra space above the logo row so the webview doesn't crop it */
-    --gap:10px;
-    --h1:28px;
-    --lead:13px;
-    --card-title:15px;
-    --card-text:12.5px;
-    --card-pad:9px 12px;
-    --ico:38px;
-    --ico-svg:19px;
-    --nudge:14px;
-    --home:15px;
+    --gap:clamp(6px, calc(6px + (var(--H) - 600px) * 0.04), 14px);
+    --card-gap:clamp(6px, calc(6px + (var(--H) - 600px) * 0.04), 14px);
+    --h1:clamp(25px, calc(25px + (var(--H) - 600px) * 0.04), 32px);
+    --lead:clamp(12px, calc(12px + (var(--H) - 600px) * 0.012), 14px);
+    --card-title:clamp(14px, calc(14px + (var(--H) - 600px) * 0.012), 16.5px);
+    --card-text:clamp(11.5px, calc(11.5px + (var(--H) - 600px) * 0.006), 12.4px);
+    --card-pad:clamp(6px, calc(6px + (var(--H) - 600px) * 0.09), 30px) 13px;
+    --ico:clamp(32px, calc(32px + (var(--H) - 600px) * 0.06), 44px);
+    --ico-svg:clamp(16px, calc(16px + (var(--H) - 600px) * 0.03), 22px);
+    --nudge:clamp(13px, calc(13px + (var(--H) - 600px) * 0.012), 16px);
+    --home:clamp(14px, calc(14px + (var(--H) - 600px) * 0.01), 17px);
   }
+  @supports (height:100dvh){:root{--H:100dvh}}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{
@@ -81,7 +84,7 @@
     background:linear-gradient(90deg,var(--brand-light),var(--brand-deep));
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  .flow{display:flex;align-items:center;gap:5px;flex:none}
+  .flow{display:flex;align-items:center;gap:5px;flex:none;margin-right:12px}
   .flow .chip{
     width:28px;height:28px;border-radius:9px;border:2px solid var(--brand-light);background:#fff;
     display:flex;align-items:center;justify-content:center;
@@ -99,9 +102,8 @@
   .lead b{color:var(--brand-deep);font-weight:600}
 
   /* Cards: sized by their content; any spare height becomes even space between them */
-  .cards{display:flex;flex-direction:column;justify-content:space-evenly;gap:8px;flex:1 0 auto}
+  .cards{display:grid;grid-template-rows:repeat(3,1fr);gap:var(--card-gap);flex:none}
   .card{
-    flex:none;
     display:flex;align-items:center;gap:12px;
     background:#fff;border:1px solid #FFE0CA;border-radius:16px;
     padding:var(--card-pad);box-shadow:0 6px 16px rgba(241,90,36,.08);
@@ -122,7 +124,7 @@
 
   /* Nudge + CTA */
   .nudge{
-    flex:none;display:flex;align-items:center;gap:10px;
+    flex:none;margin-top:auto;display:flex;align-items:center;gap:10px;
     background:linear-gradient(90deg,var(--brand-deep),var(--brand-light));
     color:#fff;border-radius:14px;padding:9px 12px;
     font-family:var(--font-head);font-weight:600;font-size:var(--nudge);line-height:1.25;
@@ -139,24 +141,18 @@
 
   /* Sparkles */
   .sp{position:absolute;color:var(--brand-light);opacity:.7;font-size:14px;pointer-events:none}
-  .sp.a{top:14%;right:8%}.sp.b{top:46%;left:2%;font-size:11px}
+  .sp.a{top:14%;right:8%}
 
-  /* Taller screens: step the sizes up a little so the page never looks empty */
-  @media (min-height:700px){
-    :root{--gap:11px;--h1:30px;--lead:13.5px;--card-title:15.5px;--card-text:12.5px;--card-pad:10px 13px;--ico:40px;--ico-svg:20px;--nudge:14px;--home:15px}
-  }
-  @media (min-height:800px){
-    :root{--gap:12px;--h1:32px;--lead:14px;--card-title:16px;--card-text:13px;--card-pad:12px 14px;--ico:42px;--ico-svg:21px;--nudge:15px;--home:16px}
-  }
-  /* Shorter screens: tighten up so everything still fits without scrolling */
-  @media (max-height:620px){
-    :root{--top-space:20px;--gap:6px;--h1:24px;--lead:12px;--card-title:14px;--card-text:11.5px;--card-pad:6px 11px;--ico:32px;--ico-svg:16px;--nudge:13px;--home:14px}
+  /* Very short screens: tighten further so everything still fits without scrolling */
+  @media (max-height:590px){
+    :root{--top-space:20px;--gap:5px;--card-gap:5px;--h1:23px;--lead:11.5px;--card-title:13.5px;--card-text:11px;--card-pad:5px 10px;--ico:30px;--ico-svg:15px;--nudge:12.5px;--home:13.5px}
+    .brand img{width:24px;height:24px}.brand span{font-size:19px}.topbar{min-height:32px}.badge{padding:4px 10px}.nudge{padding:7px 12px}.home{padding:6px 14px}
   }
 </style>
 </head>
 <body>
 <main class="page">
-  <span class="sp a">✦</span><span class="sp b">✦</span>
+  <span class="sp a">✦</span>
 
   <div class="topbar">
     <button class="back" id="backBtn" aria-label="Back">
